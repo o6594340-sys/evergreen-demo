@@ -1,4 +1,4 @@
-const CACHE = 'evergreen-v2';
+const CACHE = 'evergreen-v3';
 const OFFLINE = [
   './',
   'index.html',
