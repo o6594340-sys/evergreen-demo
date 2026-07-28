@@ -825,6 +825,33 @@ const CONTACTS = [
   },
 ];
 
+const RECOGNITION = [
+  {
+    id: 'r1',
+    emoji: '💎',
+    name: 'Анна К.',
+    city: 'Москва',
+    rank: 'Platinum Director',
+    note: 'Топ-3 по объёму продаж за квартал — поздравляем!',
+  },
+  {
+    id: 'r2',
+    emoji: '🥇',
+    name: 'Игорь П.',
+    city: 'Казань',
+    rank: 'Gold Leader',
+    note: 'Новый ранг на этой неделе — команда растёт!',
+  },
+  {
+    id: 'r3',
+    emoji: '👑',
+    name: 'Мария С.',
+    city: 'Санкт-Петербург',
+    rank: 'Diamond',
+    note: '10 лет с компанией — спасибо за преданность делу!',
+  },
+];
+
 const MEMO = [
   {
     title: 'Деньги и связь',

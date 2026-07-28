@@ -28,6 +28,7 @@ const Admin = (() => {
     transfers:    'evg_admin_transfers',
     contacts:     'evg_admin_contacts',
     memo:         'evg_admin_memo',
+    recognition:  'evg_admin_recognition',
     tabs:         'evg_admin_tabs',
     bg:           'evg_admin_bg',
     fontScale:    'evg_admin_font_scale',
@@ -126,6 +127,7 @@ const Admin = (() => {
     transfers:      null,
     contacts:       null,
     memo:           null,
+    recognition:    null,
   };
 
   /* ─── AUTH ────────────────────────────── */
@@ -179,6 +181,7 @@ const Admin = (() => {
     state.transfers   = getStored(KEYS.transfers)   || JSON.parse(JSON.stringify(TRANSFERS));
     state.contacts    = getStored(KEYS.contacts)    || JSON.parse(JSON.stringify(CONTACTS));
     state.memo        = getStored(KEYS.memo)        || JSON.parse(JSON.stringify(MEMO));
+    state.recognition = getStored(KEYS.recognition) || JSON.parse(JSON.stringify(RECOGNITION));
     loadAnnouncementPreview();
     loadSettingsForm();
   }
@@ -249,6 +252,7 @@ const Admin = (() => {
     if (name === 'ai-import')   loadAiSection();
     if (name === 'transfers')   renderTransfersSection();
     if (name === 'contacts')    renderContactsSection();
+    if (name === 'recognition') renderRecognitionSection();
     if (name === 'memo')        renderMemoSection();
   }
 
@@ -1919,6 +1923,87 @@ const Admin = (() => {
     showToast('Удалено');
   }
 
+  /* ─── RECOGNITION (Стена признания) ──── */
+  const RECOGNITION_EMOJIS = ['🏆','🥇','🥈','🥉','💎','👑','⭐','🌟','🚀','🔥'];
+
+  function renderRecognitionSection() {
+    const list = document.getElementById('recognition-list');
+    if (!list) return;
+    if (!state.recognition.length) {
+      list.innerHTML = `<div class="empty-state">Пока никого нет. Нажмите «+ Добавить».</div>`;
+      return;
+    }
+    list.innerHTML = state.recognition.map((r, i) => `
+      <div class="list-item" data-index="${i}" onclick="Admin.openRecognitionModal(+this.dataset.index)">
+        <span class="drag-handle">⠿</span>
+        <div class="list-item-left">
+          <span style="font-size:22px">${r.emoji}</span>
+          <div>
+            <div class="list-title">${r.name}</div>
+            <div class="list-sub">${r.rank || ''} · ${r.city || ''}</div>
+          </div>
+        </div>
+        <span class="list-edit">✏️</span>
+      </div>
+    `).join('');
+    initSortable('recognition-list', (from, to) => {
+      reorderArr(state.recognition, from, to);
+      save(KEYS.recognition, state.recognition);
+      showToast('Порядок сохранён');
+    });
+  }
+
+  function openRecognitionModal(index) {
+    const isNew = index === null;
+    const r = isNew
+      ? { emoji: '🏆', name: '', city: '', rank: '', note: '' }
+      : state.recognition[index];
+
+    const grid = document.getElementById('rc-emoji-grid');
+    grid.innerHTML = RECOGNITION_EMOJIS.map(e =>
+      `<button type="button" class="emoji-btn${r.emoji === e ? ' selected' : ''}" onclick="Admin.selectEmoji('rc-emoji-grid','rc-emoji','${e}')">${e}</button>`
+    ).join('');
+
+    document.getElementById('recognition-modal-title').textContent = isNew ? 'Добавить' : 'Редактировать';
+    document.getElementById('rc-index').value = isNew ? '' : index;
+    document.getElementById('rc-emoji').value = r.emoji || '🏆';
+    document.getElementById('rc-name').value  = r.name  || '';
+    document.getElementById('rc-city').value  = r.city  || '';
+    document.getElementById('rc-rank').value  = r.rank  || '';
+    document.getElementById('rc-note').value  = r.note  || '';
+    document.getElementById('rc-delete-btn').style.display = isNew ? 'none' : 'inline-block';
+    openModal('modal-recognition');
+  }
+
+  function saveRecognition() {
+    const idx   = document.getElementById('rc-index').value;
+    const isNew = idx === '';
+    const entry = {
+      id:    isNew ? 'r' + Date.now() : state.recognition[parseInt(idx)].id,
+      emoji: document.getElementById('rc-emoji').value || '🏆',
+      name:  document.getElementById('rc-name').value.trim(),
+      city:  document.getElementById('rc-city').value.trim(),
+      rank:  document.getElementById('rc-rank').value.trim(),
+      note:  document.getElementById('rc-note').value.trim(),
+    };
+    if (!entry.name) { alert('Введите имя'); return; }
+    if (isNew) state.recognition.push(entry);
+    else       state.recognition[parseInt(idx)] = entry;
+    save(KEYS.recognition, state.recognition);
+    closeModal('modal-recognition');
+    renderRecognitionSection();
+    showToast('Сохранено');
+  }
+
+  function deleteRecognition() {
+    const idx = parseInt(document.getElementById('rc-index').value);
+    state.recognition.splice(idx, 1);
+    save(KEYS.recognition, state.recognition);
+    closeModal('modal-recognition');
+    renderRecognitionSection();
+    showToast('Удалено');
+  }
+
   /* ─── BRAND KITS ─────────────────────── */
   const LABEL_MAP = {
     typography: { modern: 'Modern', executive: 'Executive', editorial: 'Editorial', friendly: 'Friendly', tech: 'Tech' },
@@ -2532,6 +2617,7 @@ const CONTACTS = [
     openTransferModal, saveTransfer, deleteTransfer,
     // contacts
     openContactModal, saveContact, deleteContact,
+    openRecognitionModal, saveRecognition, deleteRecognition,
     // emoji
     selectEmoji,
     // image

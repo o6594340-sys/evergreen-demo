@@ -87,7 +87,7 @@ evg_admin_event  evg_admin_days  evg_admin_business  evg_admin_hotel
 evg_admin_sights evg_admin_restaurants evg_admin_cuisine evg_admin_history
 evg_admin_announcement evg_admin_typography evg_admin_gradient
 evg_admin_card_style evg_admin_motion evg_admin_brand_kits
-evg_admin_transfers evg_admin_contacts evg_admin_memo evg_admin_tabs
+evg_admin_transfers evg_admin_contacts evg_admin_memo evg_admin_tabs evg_admin_recognition
 evg_admin_bg evg_admin_font_scale evg_admin_day_tab_style
 evg_admin_splash evg_admin_favicon evg_admin_white_label
 ```
@@ -106,6 +106,7 @@ evg_admin_splash evg_admin_favicon evg_admin_white_label
 | `history` | 📜 История | `renderHistory()` |
 | `memo` | 📋 Памятка | `renderMemo()` |
 | `contacts` | 📞 Контакты | `renderContacts()` |
+| `recognition` | 🏆 Признание | `renderRecognition()` — фича для MLM-клиентов: карточки участников с рангом/достижением |
 
 ---
 

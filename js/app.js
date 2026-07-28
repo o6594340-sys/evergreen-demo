@@ -20,6 +20,7 @@ const App = (() => {
   function getSights()       { return adminData('sights', SIGHTS); }
   function getCuisine()      { return adminData('cuisine', CUISINE); }
   function getHistory()      { return adminData('history', HISTORY); }
+  function getRecognition()  { return adminData('recognition', RECOGNITION); }
 
   function getAnnouncement() {
     try {
@@ -352,7 +353,7 @@ const App = (() => {
     const renderers = {
       program: renderProgram, transfers: renderTransfers, hotel: renderHotel,
       sights: renderSights, cuisine: renderCuisine, history: renderHistory,
-      memo: renderMemo, contacts: renderContacts,
+      memo: renderMemo, contacts: renderContacts, recognition: renderRecognition,
     };
     if (renderers[tab]) renderers[tab]();
   }
@@ -724,7 +725,7 @@ const App = (() => {
   function renderSights() {
     const container = document.getElementById('tab-sights');
     let html = `<div class="section-pad">`;
-    html += `<div class="section-title">Достопримечательности Пекина</div>`;
+    html += `<div class="section-title">Достопримечательности Стамбула</div>`;
 
     getSights().forEach(s => {
       html += `
@@ -912,6 +913,30 @@ const App = (() => {
           <div class="contact-actions">
             <a class="contact-btn" href="tel:${c.phone}">📞 ${c.phone}</a>
             ${c.telegram ? `<a class="contact-btn contact-btn-tg" href="https://t.me/${c.telegram.replace('@','')}">${c.telegram}</a>` : ''}
+          </div>
+        </div>
+      `;
+    });
+
+    html += `</div>`;
+    container.innerHTML = html;
+  }
+
+  /* ─── RECOGNITION (Стена признания) ───── */
+  function renderRecognition() {
+    const container = document.getElementById('tab-recognition');
+    let html = `<div class="section-pad">`;
+    html += `<div class="section-title">Стена признания</div>`;
+
+    getRecognition().forEach(r => {
+      html += `
+        <div class="recognition-card">
+          <div class="recognition-avatar">${r.emoji}</div>
+          <div class="recognition-body">
+            <div class="recognition-name">${r.name}</div>
+            <div class="recognition-city">${r.city || ''}</div>
+            ${r.rank ? `<span class="recognition-rank">${r.rank}</span>` : ''}
+            <div class="recognition-note">${r.note || ''}</div>
           </div>
         </div>
       `;

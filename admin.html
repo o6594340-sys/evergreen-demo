@@ -61,6 +61,7 @@
       <button class="nav-btn" onclick="Admin.showSection('transfers', this)">🚌 Трансферы</button>
       <button class="nav-btn" onclick="Admin.showSection('contacts', this)">📞 Контакты</button>
       <button class="nav-btn" onclick="Admin.showSection('memo', this)">📋 Памятка</button>
+      <button class="nav-btn" onclick="Admin.showSection('recognition', this)">🏆 Признание</button>
     </nav>
     <div class="sidebar-footer">
       <a href="index.html" target="_blank" class="preview-link">👁 Просмотр сайта ↗</a>
@@ -560,6 +561,16 @@
       <button class="btn-add" onclick="Admin.openContactModal(null)">+ Добавить контакт</button>
     </section>
 
+    <!-- СТЕНА ПРИЗНАНИЯ -->
+    <section id="section-recognition" class="admin-section hidden">
+      <div class="section-header">
+        <h2>🏆 Стена признания</h2>
+        <p>Отмечайте ранги, достижения и юбилеи участников прямо на сайте мероприятия — карточки видят все.</p>
+      </div>
+      <div id="recognition-list"></div>
+      <button class="btn-add" onclick="Admin.openRecognitionModal(null)">+ Добавить</button>
+    </section>
+
     <!-- ПАМЯТКА -->
     <section id="section-memo" class="admin-section hidden">
       <div class="section-header">
@@ -871,8 +882,8 @@
         <input type="hidden" id="ct-emoji">
       </div>
       <div class="form-group"><label>Роль / должность</label><input type="text" id="ct-role" placeholder="Организатор"></div>
-      <div class="form-group"><label>Имя</label><input type="text" id="ct-name" placeholder="Ольга Харлёнок"></div>
-      <div class="form-group"><label>Телефон</label><input type="text" id="ct-phone" placeholder="+7 910 400-34-60"></div>
+      <div class="form-group"><label>Имя</label><input type="text" id="ct-name" placeholder="Иван Иванов"></div>
+      <div class="form-group"><label>Телефон</label><input type="text" id="ct-phone" placeholder="+7 777 777-77-77"></div>
       <div class="form-group"><label>Telegram (с @)</label><input type="text" id="ct-telegram" placeholder="@username"></div>
       <div class="form-group full"><label>Примечание</label><input type="text" id="ct-note" placeholder="WhatsApp, Telegram · все вопросы"></div>
       <div class="form-group full">
@@ -885,6 +896,30 @@
       <button class="btn-primary" onclick="Admin.saveContact()">Сохранить</button>
       <button class="btn-secondary" onclick="Admin.closeModal('modal-contact')">Отмена</button>
       <button class="btn-danger" id="ct-delete-btn" onclick="Admin.deleteContact()">Удалить</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODAL: СТЕНА ПРИЗНАНИЯ ════════════ -->
+<div class="modal-overlay hidden" id="modal-recognition">
+  <div class="modal-box">
+    <h3 id="recognition-modal-title">Добавить</h3>
+    <input type="hidden" id="rc-index">
+    <div class="form-grid">
+      <div class="form-group full">
+        <label>Эмодзи</label>
+        <div class="emoji-grid" id="rc-emoji-grid"></div>
+        <input type="hidden" id="rc-emoji">
+      </div>
+      <div class="form-group"><label>Имя</label><input type="text" id="rc-name" placeholder="Анна К."></div>
+      <div class="form-group"><label>Город</label><input type="text" id="rc-city" placeholder="Москва"></div>
+      <div class="form-group full"><label>Ранг / статус</label><input type="text" id="rc-rank" placeholder="Platinum Director"></div>
+      <div class="form-group full"><label>За что отмечаем</label><input type="text" id="rc-note" placeholder="Топ-3 по объёму продаж за квартал"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="Admin.saveRecognition()">Сохранить</button>
+      <button class="btn-secondary" onclick="Admin.closeModal('modal-recognition')">Отмена</button>
+      <button class="btn-danger" id="rc-delete-btn" onclick="Admin.deleteRecognition()">Удалить</button>
     </div>
   </div>
 </div>

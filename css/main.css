@@ -591,6 +591,43 @@ body {
 .sight-meta  { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--text-secondary); margin-bottom: 10px; }
 .sight-tip   { font-size: 12px; color: var(--accent-text); background: var(--accent-light); border-radius: var(--radius-sm); padding: 9px 12px; line-height: 1.5; }
 
+/* ===== RECOGNITION TAB (Стена признания) ===== */
+.recognition-card {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,0.6);
+  padding: 14px;
+  margin-bottom: 12px;
+}
+.recognition-avatar {
+  flex-shrink: 0;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+}
+.recognition-body { min-width: 0; flex: 1; }
+.recognition-name { font-size: 15px; font-weight: 700; }
+.recognition-city { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; }
+.recognition-rank {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: var(--accent);
+  color: white;
+  margin-bottom: 6px;
+}
+.recognition-note { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
 /* ===== RESTAURANTS TAB ===== */
 .rest-card {
   background: var(--surface);
@@ -963,7 +1000,8 @@ body.cs-flat .business-card,
 body.cs-flat .sight-card,
 body.cs-flat .rest-card,
 body.cs-flat .cuisine-card,
-body.cs-flat .fact-card {
+body.cs-flat .fact-card,
+body.cs-flat .recognition-card {
   box-shadow: none;
   border: 1px solid rgba(0,0,0,0.09);
 }
@@ -974,7 +1012,8 @@ body.cs-glass .business-card,
 body.cs-glass .sight-card,
 body.cs-glass .rest-card,
 body.cs-glass .cuisine-card,
-body.cs-glass .fact-card {
+body.cs-glass .fact-card,
+body.cs-glass .recognition-card {
   background: rgba(255,255,255,0.72);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -989,7 +1028,8 @@ body.cs-outlined .sight-card,
 body.cs-outlined .rest-card,
 body.cs-outlined .cuisine-card,
 body.cs-outlined .fact-card,
-body.cs-outlined .transfer-card {
+body.cs-outlined .transfer-card,
+body.cs-outlined .recognition-card {
   box-shadow: none;
   border: 1.5px solid var(--accent-light);
   background: #FFFFFF;
@@ -1125,6 +1165,7 @@ body.cs-outlined .transfer-card {
 [data-theme="dark"] .fact-card,
 [data-theme="dark"] .transfer-card,
 [data-theme="dark"] .contact-card,
+[data-theme="dark"] .recognition-card,
 [data-theme="dark"] .next-block,
 [data-theme="dark"] .tip-card {
   background: rgba(255,255,255,0.07);
