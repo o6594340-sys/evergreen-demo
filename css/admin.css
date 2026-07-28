@@ -382,7 +382,7 @@ textarea { resize: vertical; }
 .brand-preview-header {
   display: flex; align-items: center; gap: 10px;
   padding: 12px 16px;
-  background: #C9353F;
+  background: #94A86B;
   transition: background 0.2s;
 }
 .brand-preview-header img {

@@ -1,14 +1,15 @@
-# CLAUDE.md — mini-app Event PWA
+# CLAUDE.md — Evergreen Life demo (форк mini-app Event PWA)
 
 ## Важно для работы
 
-- **Git-корень — папка `app/`**, не корень проекта. Все `git` команды выполнять из `app/`.
-- **GitHub Pages:** `https://o6594340-sys.github.io/mini-app-program/`
-- **Репозиторий:** `https://github.com/o6594340-sys/mini-app-program`
-- **Пароль старой админки (без ?p=):** `forum2024`
-- **Текущая версия кэша SW:** `mice-v38`
+- Это отдельный репозиторий-форк основного mini-app для демо клиенту Evergreen Life. Git-корень — корень этого репозитория.
+- **GitHub Pages:** `https://o6594340-sys.github.io/evergreen-demo/`
+- **Репозиторий:** `https://github.com/o6594340-sys/evergreen-demo`
+- **Пароль админки (без ?p=):** `evergreen2026`
+- **Текущая версия кэша SW:** `evergreen-v1`
+- **Брендинг:** акцент `#94A86B` (зелёный Evergreen Life), лого — эмодзи 🌿
 
-После изменений в JS/CSS/HTML — **обязательно поднять версию кэша** в `sw.js` (`mice-vN`), иначе пользователи получают старый файл из Service Worker.
+После изменений в JS/CSS/HTML — **обязательно поднять версию кэша** в `sw.js` (`evergreen-vN`), иначе пользователи получают старый файл из Service Worker.
 
 ---
 
@@ -48,7 +49,7 @@ app/
 | `/index.html?p=PROJECT_ID` | Приложение участника (данные из Firestore) |
 | `/admin.html?p=PROJECT_ID` | Админка проекта (Firebase Auth) |
 | `/index.html` | Демо Стамбул (данные из localStorage) |
-| `/admin.html` | Демо-админка (пароль `forum2024`, localStorage) |
+| `/admin.html` | Демо-админка (пароль `evergreen2026`, localStorage) |
 
 ### Структура Firestore
 
@@ -67,12 +68,12 @@ projects/{projectId}:
 
 - **Участник** (`?p=ID`): `app.js init()` → читает Firestore → пишет в localStorage → рендерит как обычно
 - **Организатор** (`?p=ID`): Firebase Auth → проверка `ownerId` → загрузка из Firestore → после каждого `save()` — дебаунс 2 сек → `syncToFirestore()`
-- **Демо** (без `?p=`): старый flow через localStorage, пароль `forum2024`
+- **Демо** (без `?p=`): старый flow через localStorage, пароль `evergreen2026`
 
 ### Auth-режимы в admin.js
 
 - Если `_PID` (есть `?p=`): Firebase Auth (email + пароль), поле email показывается автоматически
-- Если нет `?p=`: старый пароль `forum2024`
+- Если нет `?p=`: старый пароль `evergreen2026`
 
 ---
 

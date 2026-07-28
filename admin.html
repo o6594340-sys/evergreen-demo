@@ -11,9 +11,9 @@
 <!-- ═══ AUTH ══════════════════════════════ -->
 <div id="auth-screen">
   <div class="auth-card">
-    <div class="auth-logo">🕌</div>
+    <div class="auth-logo">🌿</div>
     <h1 class="auth-title">Панель организатора</h1>
-    <p class="auth-sub">Стамбул 2026</p>
+    <p class="auth-sub">Evergreen Life · демо</p>
     <input type="email" id="auth-email" class="auth-input hidden"
       placeholder="Email организатора"
       onkeydown="if(event.key==='Enter')Admin.login()">
@@ -31,7 +31,7 @@
 <div id="admin-panel" class="hidden">
 
   <aside class="sidebar">
-    <div class="sidebar-logo">🕌 Организатор</div>
+    <div class="sidebar-logo">🌿 Организатор</div>
     <nav class="sidebar-nav">
       <div class="nav-group-label">AI</div>
       <button class="nav-btn" onclick="Admin.showSection('ai-import', this)">📥 Импорт программы</button>
@@ -207,7 +207,7 @@
           <div class="backup-icon">🐙</div>
           <div class="backup-title">Скопировать репозиторий</div>
           <div class="backup-desc">Откроет GitHub — нажмите «Use this template» → введите название нового проекта → включите Pages. Готово.</div>
-          <a class="btn-primary" href="https://github.com/o6594340-sys/mini-app-program/generate" target="_blank" style="display:block;text-align:center;text-decoration:none">Открыть на GitHub →</a>
+          <a class="btn-primary" href="https://github.com/o6594340-sys/evergreen-demo/generate" target="_blank" style="display:block;text-align:center;text-decoration:none">Открыть на GitHub →</a>
         </div>
       </div>
 
@@ -215,7 +215,7 @@
         <div class="card-body">
           <div class="backup-title" style="margin-bottom:12px">📋 Как создать новый проект за 5 шагов</div>
           <div class="new-project-steps">
-            <div class="np-step"><span class="np-num">1</span><div><strong>Скопируй репозиторий</strong> — кнопка «Открыть на GitHub» → «Use this template» → назови, например <code>mini-app-dubai</code></div></div>
+            <div class="np-step"><span class="np-num">1</span><div><strong>Скопируй репозиторий</strong> — кнопка «Открыть на GitHub» → «Use this template» → назови, например <code>event-dubai</code></div></div>
             <div class="np-step"><span class="np-num">2</span><div><strong>Включи GitHub Pages</strong> — Settings → Pages → Source: main → Save</div></div>
             <div class="np-step"><span class="np-num">3</span><div><strong>Скачай шаблон data.js</strong> — заполни данными нового мероприятия</div></div>
             <div class="np-step"><span class="np-num">4</span><div><strong>Загрузи data.js</strong> в новый репозиторий (заменив старый)</div></div>
@@ -325,7 +325,7 @@
         </div>
         <div class="form-group full hidden" id="splash-slogan-group">
           <label>Слоган</label>
-          <input type="text" id="splash-slogan" placeholder="Встречаемся в Стамбуле!" oninput="Admin.saveSplashSlogan()">
+          <input type="text" id="splash-slogan" placeholder="Добро пожаловать!" oninput="Admin.saveSplashSlogan()">
         </div>
         <div class="form-group full">
           <label>Анимация — нажмите «Посмотреть» для предпросмотра</label>
@@ -340,7 +340,7 @@
       </div>
       <div class="form-group full hidden" id="favicon-emoji-group">
         <label>Emoji</label>
-        <input type="text" id="favicon-emoji" placeholder="🕌" maxlength="4" oninput="Admin.saveFaviconEmoji()">
+        <input type="text" id="favicon-emoji" placeholder="🌿" maxlength="4" oninput="Admin.saveFaviconEmoji()">
       </div>
       <div class="form-group full hidden" id="favicon-url-group">
         <label>Ссылка на изображение</label>

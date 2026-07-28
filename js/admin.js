@@ -1362,7 +1362,7 @@ const Admin = (() => {
         <div class="list-item-left">
           <span style="font-size:22px">${d.emoji}</span>
           <div>
-            <div class="list-title">${d.title} ${d.must ? '<span style="color:#C9353F;font-size:11px;font-weight:700">МАСТ</span>' : ''}</div>
+            <div class="list-title">${d.title} ${d.must ? '<span style="color:#94A86B;font-size:11px;font-weight:700">МАСТ</span>' : ''}</div>
             <div class="list-sub">${d.cn || ''} · ${d.price || ''}</div>
           </div>
         </div>
@@ -1435,7 +1435,7 @@ const Admin = (() => {
     const selector = document.getElementById('history-section-selector');
     selector.innerHTML = state.history.map((sec, i) => `
       <button class="day-pill ${i === state.historySection ? 'active' : ''}"
-        style="${i === state.historySection ? 'background:#C9353F' : ''}"
+        style="${i === state.historySection ? 'background:#94A86B' : ''}"
         onclick="Admin.selectHistorySection(${i})">${sec.emoji} ${sec.section}</button>
     `).join('');
     renderHistoryList();
