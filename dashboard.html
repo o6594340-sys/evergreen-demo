@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MICE App — Личный кабинет</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<!-- ═══ LOGIN ═════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">⚡</div>
+    <h1 class="login-title">MICE App</h1>
+    <p class="login-sub">Личный кабинет организатора</p>
+
+    <div id="login-error" class="login-error hidden"></div>
+
+    <label class="login-label">Email</label>
+    <input type="email" id="login-email" class="login-input" placeholder="you@agency.com"
+      onkeydown="if(event.key==='Enter')Dashboard.login()">
+
+    <label class="login-label">Пароль</label>
+    <input type="password" id="login-password" class="login-input" placeholder="••••••••"
+      onkeydown="if(event.key==='Enter')Dashboard.login()">
+
+    <button class="login-btn" onclick="Dashboard.login()">Войти</button>
+    <button class="login-btn-ghost" onclick="Dashboard.register()">Создать аккаунт</button>
+  </div>
+</div>
+
+<!-- ═══ DASHBOARD ═════════════════════════════ -->
+<div id="dashboard-screen" class="hidden">
+
+  <header class="dash-header">
+    <div class="dash-logo">
+      <span class="dash-logo-icon">⚡</span>
+      MICE App
+    </div>
+    <div class="dash-user">
+      <span class="dash-email" id="user-email"></span>
+      <button class="dash-logout" onclick="Dashboard.logout()">Выйти</button>
+    </div>
+  </header>
+
+  <main class="dash-main">
+    <div class="dash-topbar">
+      <div class="dash-title">Мои проекты</div>
+      <button class="btn-new-project" onclick="Dashboard.openNewProjectModal()">
+        + Новый проект
+      </button>
+    </div>
+
+    <div class="projects-grid" id="projects-list">
+      <div class="loading">Загрузка...</div>
+    </div>
+  </main>
+
+</div>
+
+<!-- ═══ MODAL: Новый проект ═══════════════════ -->
+<div class="modal-overlay hidden" id="modal-new-project"
+  onclick="if(event.target===this)Dashboard.closeNewProjectModal()">
+  <div class="modal-box">
+    <div class="modal-title">Новый проект</div>
+
+    <div class="form-group">
+      <label class="form-label">Название мероприятия</label>
+      <input type="text" id="new-project-name" class="form-input"
+        placeholder="Форум в Дубае · июль 2026"
+        onkeydown="if(event.key==='Enter')Dashboard.createProject()">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Эмодзи (необязательно)</label>
+      <input type="text" id="new-project-emoji" class="form-input"
+        placeholder="🏙" maxlength="4"
+        style="font-size:24px; width:80px; text-align:center">
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="Dashboard.createProject()">Создать</button>
+      <button class="btn-secondary" onclick="Dashboard.closeNewProjectModal()">Отмена</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "Evergreen Life — демо-программа",
+  "short_name": "Evergreen Demo",
+  "description": "Программа и гид участника мероприятия",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FDFAF6",
+  "theme_color": "#94A86B",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%2394A86B'/><text y='140' x='96' font-size='110' text-anchor='middle'>🌿</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}
