@@ -33,8 +33,8 @@
   <aside class="sidebar">
     <div class="sidebar-logo">🌿 Организатор</div>
     <nav class="sidebar-nav">
-      <div class="nav-group-label hidden">AI</div>
-      <button class="nav-btn hidden" onclick="Admin.showSection('ai-import', this)">📥 Импорт программы</button>
+      <div class="nav-group-label">AI</div>
+      <button class="nav-btn" onclick="Admin.showSection('ai-import', this)">📥 Импорт программы</button>
 
       <div class="nav-group-label hidden">Направление</div>
       <button class="nav-btn hidden" onclick="Admin.showSection('templates', this)">🌍 Шаблон страны</button>
@@ -101,16 +101,16 @@
              ondragover="event.preventDefault();this.classList.add('drag-over')"
              ondragleave="this.classList.remove('drag-over')"
              ondrop="Admin.handleFileDrop(event)">
-        <input type="file" accept=".docx,.pdf,.txt" class="hidden"
+        <input type="file" accept=".docx,.pdf,.txt,.xlsx,.xls" class="hidden"
                onchange="Admin.handleFileUpload(this)">
         <div class="file-upload-icon">📄</div>
-        <div class="file-upload-text">Загрузить файл Word, PDF или TXT</div>
-        <div class="file-upload-hint">Перетащите сюда или нажмите для выбора · .docx · .pdf · .txt</div>
+        <div class="file-upload-text">Загрузить файл Word, PDF, Excel или TXT</div>
+        <div class="file-upload-hint">Перетащите сюда или нажмите для выбора · .docx · .pdf · .xlsx · .txt</div>
       </label>
 
       <div class="import-hint-box">
         <span>💡</span>
-        <span>Деловые сессии начинаются с <strong>Деловая:</strong> — или просто вставьте любой текст, приложение разберёт автоматически.</span>
+        <span>Деловые сессии начинаются с <strong>Деловая:</strong> — или просто вставьте любой текст, приложение разберёт автоматически. Для Excel: два столбца в том же формате — «День 1» / «18 ноября» на строке дня, «09:00» / «Завтрак» на строке активности.</span>
       </div>
 
       <div class="form-group">
@@ -931,6 +931,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="js/data.js"></script>
 <script src="js/templates.js"></script>
 <script src="js/admin.js"></script>

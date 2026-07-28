@@ -2254,8 +2254,29 @@ const Admin = (() => {
       };
       reader.readAsArrayBuffer(file);
 
+    } else if (ext === 'xlsx' || ext === 'xls') {
+      if (typeof XLSX === 'undefined') { status.textContent = '❌ Библиотека не загружена, проверьте интернет'; return; }
+      const reader = new FileReader();
+      reader.onload = e => {
+        try {
+          const wb = XLSX.read(e.target.result, { type: 'array' });
+          const sheet = wb.Sheets[wb.SheetNames[0]];
+          const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, blankrows: false, defval: '' });
+          const text = rows
+            .map(row => row.map(cell => String(cell).trim()).filter(Boolean).join(' | '))
+            .filter(Boolean)
+            .join('\n');
+          document.getElementById('ai-program-text').value = text;
+          status.textContent = '';
+          parseProgram();
+        } catch (err) {
+          status.textContent = '❌ Ошибка Excel: ' + err.message;
+        }
+      };
+      reader.readAsArrayBuffer(file);
+
     } else {
-      status.textContent = '❌ Формат не поддерживается. Используйте .docx, .pdf или .txt';
+      status.textContent = '❌ Формат не поддерживается. Используйте .docx, .pdf, .xlsx или .txt';
     }
   }
 
