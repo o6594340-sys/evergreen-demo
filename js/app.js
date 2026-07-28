@@ -7,7 +7,7 @@ const App = (() => {
   /* ─── ADMIN DATA OVERRIDE ─────────────── */
   function adminData(key, fallback) {
     try {
-      const s = localStorage.getItem('admin_' + key);
+      const s = localStorage.getItem('evg_admin_' + key);
       return s ? JSON.parse(s) : fallback;
     } catch { return fallback; }
   }
@@ -23,7 +23,7 @@ const App = (() => {
 
   function getAnnouncement() {
     try {
-      const s = localStorage.getItem('admin_announcement');
+      const s = localStorage.getItem('evg_admin_announcement');
       return s ? JSON.parse(s) : null;
     } catch { return null; }
   }
@@ -92,7 +92,7 @@ const App = (() => {
   };
 
   function applyTypography() {
-    const key  = localStorage.getItem('admin_typography') || 'modern';
+    const key  = localStorage.getItem('evg_admin_typography') || 'modern';
     const pair = FONT_PAIRS[key];
     if (!pair || !pair.url) return;
     const lk = document.createElement('link');
@@ -109,7 +109,7 @@ const App = (() => {
     const dark   = shadeColor(accent, -40);
     const darker = shadeColor(accent, -60);
     const light  = shadeColor(accent, +50);
-    const recipe = localStorage.getItem('admin_gradient') || 'glow';
+    const recipe = localStorage.getItem('evg_admin_gradient') || 'glow';
 
     let headerBg, nowBg;
     switch (recipe) {
@@ -140,7 +140,7 @@ const App = (() => {
   }
 
   function applyMotion() {
-    const style = localStorage.getItem('admin_motion') || 'swift';
+    const style = localStorage.getItem('evg_admin_motion') || 'swift';
     const root  = document.documentElement;
     switch (style) {
       case 'elegant':
@@ -167,13 +167,13 @@ const App = (() => {
   }
 
   function applyCardStyle() {
-    const style = localStorage.getItem('admin_card_style') || 'elevated';
+    const style = localStorage.getItem('evg_admin_card_style') || 'elevated';
     document.body.classList.remove('cs-flat', 'cs-glass', 'cs-outlined');
     if (style !== 'elevated') document.body.classList.add('cs-' + style);
   }
 
   function applyWhiteLabel() {
-    const hidden = localStorage.getItem('admin_white_label') === 'true';
+    const hidden = localStorage.getItem('evg_admin_white_label') === 'true';
     const el = document.getElementById('mice-attribution');
     if (el) el.style.display = hidden ? 'none' : '';
   }
@@ -192,7 +192,7 @@ const App = (() => {
   }
 
   function applyFavicon() {
-    const raw = localStorage.getItem('admin_favicon');
+    const raw = localStorage.getItem('evg_admin_favicon');
     if (!raw) return;
     let cfg;
     try { cfg = JSON.parse(raw); } catch { return; }
@@ -214,7 +214,7 @@ const App = (() => {
   }
 
   function showSplash() {
-    const raw = localStorage.getItem('admin_splash');
+    const raw = localStorage.getItem('evg_admin_splash');
     if (!raw) return;
     let cfg;
     try { cfg = JSON.parse(raw); } catch { return; }
@@ -247,12 +247,12 @@ const App = (() => {
   }
 
   function applyFontScale() {
-    const scale = parseFloat(localStorage.getItem('admin_font_scale') || '1');
+    const scale = parseFloat(localStorage.getItem('evg_admin_font_scale') || '1');
     document.body.style.zoom = scale;
   }
 
   function applyBackground() {
-    const raw = localStorage.getItem('admin_bg');
+    const raw = localStorage.getItem('evg_admin_bg');
     if (raw === null) return;
     try {
       const p = BG_PRESETS[+JSON.parse(raw)];
@@ -276,7 +276,7 @@ const App = (() => {
   /* ─── INIT ────────────────────────────── */
   function applyTabVisibility() {
     try {
-      const raw = localStorage.getItem('admin_tabs');
+      const raw = localStorage.getItem('evg_admin_tabs');
       if (!raw) return;
       const vis = JSON.parse(raw);
       document.querySelectorAll('.tab[data-tab]').forEach(btn => {
@@ -304,7 +304,7 @@ const App = (() => {
         if (snap.exists) {
           const data = snap.data().data || {};
           Object.entries(data).forEach(([k, v]) => {
-            if (v !== undefined) localStorage.setItem('admin_' + k, JSON.stringify(v));
+            if (v !== undefined) localStorage.setItem('evg_admin_' + k, JSON.stringify(v));
           });
         }
       } catch(e) { console.error('Firestore load:', e); }
@@ -461,7 +461,7 @@ const App = (() => {
     const container = document.getElementById('tab-program');
     const day = getDays()[state.programDay];
 
-    const dts = localStorage.getItem('admin_day_tab_style') || 'pills';
+    const dts = localStorage.getItem('evg_admin_day_tab_style') || 'pills';
     let tabs = `<div class="day-tabs day-tabs--${dts}">`;
     getDays().forEach((d, i) => {
       const act = i === state.programDay;

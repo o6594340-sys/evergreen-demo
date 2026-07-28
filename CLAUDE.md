@@ -81,15 +81,15 @@ projects/{projectId}:
 
 `data.js` содержит дефолтные константы: `EVENT`, `HOTEL`, `DAYS`, `BUSINESS_SESSIONS`, `SIGHTS`, `RESTAURANTS`, `CUISINE`, `HISTORY`, `FAQ`, `NEARBY`, `CONTACTS`.
 
-Панель сохраняет изменения в **localStorage** с префиксом `admin_`:
+Панель сохраняет изменения в **localStorage** с префиксом `evg_admin_` (namespaced — GitHub Pages хостит все репозитории на одном домене `o6594340-sys.github.io`, localStorage общий на весь домен, поэтому префикс должен быть уникальным для каждого форка/клиента, иначе данные разных демо перемешаются):
 ```
-admin_event  admin_days  admin_business  admin_hotel
-admin_sights admin_restaurants admin_cuisine admin_history
-admin_announcement admin_typography admin_gradient
-admin_card_style admin_motion admin_brand_kits
-admin_transfers admin_contacts admin_memo admin_tabs
-admin_bg admin_font_scale admin_day_tab_style
-admin_splash admin_favicon admin_white_label
+evg_admin_event  evg_admin_days  evg_admin_business  evg_admin_hotel
+evg_admin_sights evg_admin_restaurants evg_admin_cuisine evg_admin_history
+evg_admin_announcement evg_admin_typography evg_admin_gradient
+evg_admin_card_style evg_admin_motion evg_admin_brand_kits
+evg_admin_transfers evg_admin_contacts evg_admin_memo evg_admin_tabs
+evg_admin_bg evg_admin_font_scale evg_admin_day_tab_style
+evg_admin_splash evg_admin_favicon evg_admin_white_label
 ```
 
 ---

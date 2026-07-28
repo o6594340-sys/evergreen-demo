@@ -11,30 +11,30 @@ const Admin = (() => {
   const _PID = new URLSearchParams(location.search).get('p'); // Firestore project ID
 
   const KEYS = {
-    event:        'admin_event',
-    days:         'admin_days',
-    restaurants:  'admin_restaurants',
-    announcement: 'admin_announcement',
-    business:     'admin_business',
-    hotel:        'admin_hotel',
-    sights:       'admin_sights',
-    cuisine:      'admin_cuisine',
-    history:      'admin_history',
-    typography:   'admin_typography',
-    gradient:     'admin_gradient',
-    cardStyle:    'admin_card_style',
-    motion:       'admin_motion',
-    brandKits:    'admin_brand_kits',
-    transfers:    'admin_transfers',
-    contacts:     'admin_contacts',
-    memo:         'admin_memo',
-    tabs:         'admin_tabs',
-    bg:           'admin_bg',
-    fontScale:    'admin_font_scale',
-    dayTabStyle:  'admin_day_tab_style',
-    splash:       'admin_splash',
-    favicon:      'admin_favicon',
-    whiteLabel:   'admin_white_label',
+    event:        'evg_admin_event',
+    days:         'evg_admin_days',
+    restaurants:  'evg_admin_restaurants',
+    announcement: 'evg_admin_announcement',
+    business:     'evg_admin_business',
+    hotel:        'evg_admin_hotel',
+    sights:       'evg_admin_sights',
+    cuisine:      'evg_admin_cuisine',
+    history:      'evg_admin_history',
+    typography:   'evg_admin_typography',
+    gradient:     'evg_admin_gradient',
+    cardStyle:    'evg_admin_card_style',
+    motion:       'evg_admin_motion',
+    brandKits:    'evg_admin_brand_kits',
+    transfers:    'evg_admin_transfers',
+    contacts:     'evg_admin_contacts',
+    memo:         'evg_admin_memo',
+    tabs:         'evg_admin_tabs',
+    bg:           'evg_admin_bg',
+    fontScale:    'evg_admin_font_scale',
+    dayTabStyle:  'evg_admin_day_tab_style',
+    splash:       'evg_admin_splash',
+    favicon:      'evg_admin_favicon',
+    whiteLabel:   'evg_admin_white_label',
   };
 
   const SPLASH_ANIMS = [
@@ -201,7 +201,7 @@ const Admin = (() => {
     if (!_PID || !window.db || !window.auth || !auth.currentUser) return;
     const data = {};
     Object.values(KEYS).forEach(lsKey => {
-      const k = lsKey.replace('admin_', '');
+      const k = lsKey.replace('evg_admin_', '');
       const v = localStorage.getItem(lsKey);
       if (v) { try { data[k] = JSON.parse(v); } catch(e) {} }
     });
@@ -224,7 +224,7 @@ const Admin = (() => {
       if (!snap.exists) return;
       const data = snap.data().data || {};
       Object.entries(data).forEach(([k, v]) => {
-        if (v !== undefined) localStorage.setItem('admin_' + k, JSON.stringify(v));
+        if (v !== undefined) localStorage.setItem('evg_admin_' + k, JSON.stringify(v));
       });
     } catch(e) { console.error('Firestore load error:', e); }
   }
@@ -278,7 +278,7 @@ const Admin = (() => {
 
   /* ─── TEMPLATES ──────────────────────── */
   function renderTemplatesSection() {
-    const activeKey = localStorage.getItem('admin_template') || '';
+    const activeKey = localStorage.getItem('evg_admin_template') || '';
     const grid = document.getElementById('template-grid');
 
     grid.innerHTML = Object.entries(TEMPLATES).map(([key, tpl]) => {
@@ -312,7 +312,7 @@ const Admin = (() => {
   function applyTemplate(key) {
     const tpl = TEMPLATES[key];
     if (!tpl) return;
-    const current = localStorage.getItem('admin_template') || '';
+    const current = localStorage.getItem('evg_admin_template') || '';
     if (current === key) return;
 
     if (!confirm(`Загрузить шаблон «${tpl.meta.flag} ${tpl.meta.name}»?\n\nЭто перезапишет: историю, кухню, достопримечательности, рестораны и отель.\nПрограмма мероприятия и расписание останутся без изменений.`)) return;
@@ -339,7 +339,7 @@ const Admin = (() => {
     save(KEYS.restaurants, restaurants);
     save(KEYS.cuisine,     cuisine);
     save(KEYS.history,     history);
-    localStorage.setItem('admin_template', key);
+    localStorage.setItem('evg_admin_template', key);
 
     // reload state
     state.event       = patchedEvent;
@@ -2459,7 +2459,7 @@ const CONTACTS = [
 
   function resetToDefaults() {
     if (!confirm('Сбросить все данные приложения к содержимому data.js?\n\nОформление (шрифты, цвета, стили карточек) сохранится.\nПрограмма, отель, места, кухня, история и контакты вернутся к дефолтным.')) return;
-    const dataKeys = [KEYS.event, KEYS.days, KEYS.restaurants, KEYS.business, KEYS.hotel, KEYS.sights, KEYS.cuisine, KEYS.history, 'admin_contacts', 'admin_transfers', 'admin_faq', 'admin_practical'];
+    const dataKeys = [KEYS.event, KEYS.days, KEYS.restaurants, KEYS.business, KEYS.hotel, KEYS.sights, KEYS.cuisine, KEYS.history, 'evg_admin_contacts', 'evg_admin_transfers', 'evg_admin_faq', 'evg_admin_practical'];
     dataKeys.forEach(k => localStorage.removeItem(k));
     showToast('Данные сброшены к данным по умолчанию');
     const status = document.getElementById('backup-status');
