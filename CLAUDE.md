@@ -5,7 +5,13 @@
 - Это отдельный репозиторий-форк основного mini-app для демо клиенту Evergreen Life. Git-корень — корень этого репозитория.
 - **GitHub Pages:** `https://o6594340-sys.github.io/evergreen-demo/`
 - **Репозиторий:** `https://github.com/o6594340-sys/evergreen-demo`
-- **Пароль админки (без ?p=):** `evergreen2026`
+- **Пароль админки (без ?p=):** `evergreen2026` — это отдельный локальный демо-режим (localStorage, один браузер), для теста/показа "с нуля"
+- **Реальная рабочая ссылка, отправленная клиенту** (Firestore-синхронизация, доступна с любых устройств):
+  - Firestore project id: `hxObEG9yEMSghzUS6RXN` (в проекте `miceapp-saas`, коллекция `projects`)
+  - Участник: `https://o6594340-sys.github.io/evergreen-demo/index.html?p=hxObEG9yEMSghzUS6RXN`
+  - Админка: `https://o6594340-sys.github.io/evergreen-demo/admin.html?p=hxObEG9yEMSghzUS6RXN`
+  - Вход (общий на контакт-персону и её директора): email `evergreen.life.demo@mice-app.ru`, пароль `evergreen2026`
+  - ⚠️ Не путать со ссылками без `?p=` — режимы независимы, используют один и тот же префикс `evg_admin_` в localStorage, но разный источник данных (Firestore vs чистый localStorage). Если в одном браузере открывать и demo-ссылку, и `?p=`-ссылку — данные могут перемешаться визуально (см. кейс с "бывшим Пекином" ранее в истории работы).
 - **Service Worker:** сейчас **отключён** (kill-switch) — см. раздел «Service Worker» ниже. Регистрация убрана из `index.html`.
 - **Брендинг:** акцент `#94A86B` (зелёный Evergreen Life), лого — эмодзи 🌿
 - **В боковом меню админки скрыты** (класс `hidden`, не удалены из кода): AI-импорт был возвращён обратно по просьбе клиента; всё ещё скрыты — «Шаблон страны», «Новый проект», «Бэкап»
