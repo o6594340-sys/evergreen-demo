@@ -14,15 +14,11 @@
     <div class="auth-logo">🌿</div>
     <h1 class="auth-title">Панель организатора</h1>
     <p class="auth-sub">Evergreen Life · демо</p>
-    <input type="email" id="auth-email" class="auth-input hidden"
-      placeholder="Email организатора"
-      onkeydown="if(event.key==='Enter')Admin.login()">
     <input type="password" id="auth-input" class="auth-input"
       placeholder="Пароль администратора"
       onkeydown="if(event.key==='Enter')Admin.login()">
     <button class="auth-btn" onclick="Admin.login()">Войти</button>
     <div class="auth-error hidden" id="auth-error">Неверный пароль</div>
-    <a class="auth-link" href="dashboard.html">← Личный кабинет</a>
     <a class="auth-link" href="index.html" style="margin-top:4px">← Перейти к сайту участника</a>
   </div>
 </div>

@@ -8,6 +8,7 @@
 const Admin = (() => {
 
   const PASSWORD = 'evergreen2026';
+  const FIXED_ADMIN_EMAIL = 'evergreen.life.demo@mice-app.ru'; // единый логин для ?p= проектов этого форка — скрыт от пользователя, вводится только пароль
   const _PID = new URLSearchParams(location.search).get('p'); // Firestore project ID
 
   const KEYS = {
@@ -133,16 +134,15 @@ const Admin = (() => {
   /* ─── AUTH ────────────────────────────── */
   async function login() {
     if (_PID && window.auth) {
-      // Firebase auth for SaaS projects
-      const email    = document.getElementById('auth-email').value.trim();
+      // Firebase auth for SaaS projects — email скрыт от пользователя, вводится только пароль
       const password = document.getElementById('auth-input').value;
       const errEl    = document.getElementById('auth-error');
       errEl.classList.add('hidden');
       try {
-        await auth.signInWithEmailAndPassword(email, password);
+        await auth.signInWithEmailAndPassword(FIXED_ADMIN_EMAIL, password);
         // auth state listener handles the rest
       } catch(e) {
-        errEl.textContent = 'Неверный email или пароль';
+        errEl.textContent = 'Неверный пароль';
         errEl.classList.remove('hidden');
       }
       return;
@@ -165,7 +165,6 @@ const Admin = (() => {
     document.getElementById('auth-screen').classList.remove('hidden');
     document.getElementById('admin-panel').classList.add('hidden');
     document.getElementById('auth-input').value  = '';
-    document.getElementById('auth-email').value  = '';
   }
 
   /* ─── LOAD DATA ───────────────────────── */
@@ -2649,14 +2648,6 @@ const CONTACTS = [
 
   // Firebase Auth listener for SaaS projects (?p=PROJECT_ID)
   if (_PID && window.auth) {
-    // Show email field and update UI for Firebase mode
-    document.addEventListener('DOMContentLoaded', () => {
-      const emailEl = document.getElementById('auth-email');
-      if (emailEl) emailEl.classList.remove('hidden');
-      const subEl = document.querySelector('.auth-sub');
-      if (subEl) subEl.textContent = 'Войдите в аккаунт организатора';
-    });
-
     auth.onAuthStateChanged(async user => {
       if (user) {
         // Verify project ownership
