@@ -22,7 +22,10 @@
       <div class="header-sub" id="header-sub">Evergreen Life · демо-программа</div>
     </div>
   </div>
-  <button class="faq-trigger" onclick="App.openFAQ()" aria-label="Часто задаваемые вопросы">?</button>
+  <div class="header-actions">
+    <a class="faq-trigger admin-trigger" href="#" onclick="location.href='admin.html'+location.search;return false" aria-label="Панель администратора" title="Панель администратора">⚙️</a>
+    <button class="faq-trigger" onclick="App.openFAQ()" aria-label="Часто задаваемые вопросы">?</button>
+  </div>
 </header>
 
 <!-- ═══ TAB BAR ═══════════════════════════ -->
