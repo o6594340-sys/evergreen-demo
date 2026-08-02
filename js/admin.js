@@ -327,13 +327,13 @@ const Admin = (() => {
     const cuisine     = tpl.cuisine     || JSON.parse(JSON.stringify(CUISINE));
     const history     = tpl.history     || JSON.parse(JSON.stringify(HISTORY));
 
-    // patch event: update location + brand, keep title/dates/wifi/organizer/emergency
+    // patch event: update location + brand color, keep title/dates/wifi/organizer/emergency/logo
     const currentEvent = getStored(KEYS.event) || JSON.parse(JSON.stringify(EVENT));
     const patchedEvent = {
       ...currentEvent,
       location: tpl.event.location,
       subtitle: tpl.event.subtitle,
-      brand:    tpl.event.brand,
+      brand:    { ...tpl.event.brand, logo: currentEvent.brand?.logo || tpl.event.brand.logo },
     };
 
     save(KEYS.event,       patchedEvent);
